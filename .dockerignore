@@ -1,0 +1,22 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+.dockerignore
+
+# 编辑器和IDE文件
+.idea
+.vscode
+*.swp
+*.swo
+
+# 文档和其他不需要的文件
+README.md
+LICENSE
+*.md
+
+# 系统文件
+.DS_Store
+Thumbs.db 
