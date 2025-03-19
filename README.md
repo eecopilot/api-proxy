@@ -118,3 +118,24 @@ docker-compose exec nginx-proxy nginx -T | grep ssl
 - 增加 `worker_connections` 数量
 - 启用 HTTP/2
 - 配置适当的缓存设置
+
+## 关于 CORS 的说明：
+
+```
+# 添加 CORS 头信息
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS';
+add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+
+# 处理 OPTIONS 预检请求
+if ($request_method = 'OPTIONS') {
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS';
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+    add_header 'Access-Control-Max-Age' '1728000';
+    add_header 'Content-Type' 'text/plain; charset=utf-8';
+    add_header 'Content-Length' '0';
+    return 204;
+}
+```
